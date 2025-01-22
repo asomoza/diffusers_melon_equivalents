@@ -5,7 +5,7 @@
 ### SIMPLE
 
 <p align="center">
-    <table style="border: 1px solid #aaaaaa;">
+    <table style="border: 1px solid #aaaaaa; border-collapse: collapse; width: 100%;">
     <tr>
         <td align="center"><a href="https://github.com/asomoza/diffusers_melon_equivalents/blob/main/code/t2i_simple.py">Code</a></td>
         <td align="center"><a href="https://github.com/asomoza/diffusers_melon_equivalents/blob/main/workflows/t2i_simple_workflow.json">Workflow</a></td>
