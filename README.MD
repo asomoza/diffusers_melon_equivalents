@@ -4,6 +4,7 @@
 
 ### SIMPLE
 
+<div style="width: 100%;">
 <table style="border: 1px solid #aaaaaa; border-collapse: collapse; width: 100%;">
 <tr>
     <td align="center" style="border: 1px solid #aaaaaa; width: 33%;"><a href="https://github.com/asomoza/diffusers_melon_equivalents/blob/main/code/t2i_simple.py">Code</a></td>
@@ -13,6 +14,7 @@
     </td>
 </tr>
 </table>
+</div>
 
 ### PAG
 
