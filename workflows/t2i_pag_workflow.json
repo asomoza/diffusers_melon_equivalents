@@ -1,0 +1,599 @@
+{
+  "nodes": [
+    {
+      "id": "N1B_E6wMuwO5QTQAGzZ-L",
+      "type": "custom",
+      "position": {
+        "x": -341.6834649940989,
+        "y": -255.56495677233164
+      },
+      "data": {
+        "label": "Text Encoder",
+        "module": "mellon-modular-diffusers.custom",
+        "action": "TextEncoder",
+        "category": "Modular-Diffusers",
+        "params": {
+          "components": {
+            "label": "Components",
+            "display": "input",
+            "type": "diffusers_components"
+          },
+          "positive_prompt": {
+            "label": "Positive Prompt",
+            "type": "string",
+            "display": "textarea",
+            "value": "cinematic film still, of an anthropomorphic capybara leisurely sipping a cup of herbal tea, donned in a cozy robe and fuzzy slippers while lounging on a lily pad in the middle of a serene pond, cinematic, film grain, 35mm, high budget, cinemascope, epic"
+          },
+          "negative_prompt": {
+            "label": "Negative Prompt",
+            "type": "string",
+            "display": "textarea"
+          },
+          "embeddings": {
+            "label": "Embeddings",
+            "display": "output",
+            "type": "prompt_embeddings"
+          }
+        },
+        "groups": {},
+        "cache": true,
+        "time": "0.00",
+        "memory": 0
+      },
+      "measured": {
+        "width": 336,
+        "height": 504
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "EFX7JW3lx-9tlMqMTiGyg",
+      "type": "custom",
+      "position": {
+        "x": -269.4350432276684,
+        "y": -756.9807967452238
+      },
+      "data": {
+        "label": "Components Loader",
+        "module": "mellon-modular-diffusers.custom",
+        "action": "ComponentsLoader",
+        "category": "Modular-Diffusers",
+        "params": {
+          "repo_id": {
+            "label": "Repo ID",
+            "options": [
+              "John6666/noobai-xl-nai-xl-vpred09rversion-sdxl",
+              "John6666/realvisxl-v50-sdxl",
+              "John6666/wai-nsfw-illustrious-v90-sdxl",
+              "stabilityai/stable-diffusion-xl-base-1.0"
+            ],
+            "display": "autocomplete",
+            "no_validation": true,
+            "default": "stabilityai/stable-diffusion-xl-base-1.0",
+            "value": "Lykon/dreamshaper-xl-v2-turbo"
+          },
+          "variant": {
+            "label": "Variant",
+            "options": [
+              "[unset]",
+              "fp32",
+              "fp16"
+            ],
+            "default": "fp16",
+            "value": "fp16"
+          },
+          "device": {
+            "label": "Device",
+            "type": "string",
+            "options": {
+              "cuda:0": {
+                "index": 0,
+                "device": "cuda:0",
+                "host": "",
+                "label": "cuda:0",
+                "total_memory": 25305481216
+              },
+              "cpu": {
+                "index": 0,
+                "device": "cpu",
+                "host": "",
+                "label": "cpu",
+                "total_memory": null
+              }
+            },
+            "default": "cuda:0",
+            "value": "cuda:0"
+          },
+          "dtype": {
+            "label": "Dtype",
+            "type": "string",
+            "options": [
+              "auto",
+              "float32",
+              "float16",
+              "bfloat16"
+            ],
+            "default": "float16",
+            "value": "float16"
+          },
+          "components": {
+            "label": "Components",
+            "display": "output",
+            "type": "diffusers_components"
+          }
+        },
+        "groups": {},
+        "cache": true,
+        "time": "0.00",
+        "memory": 0
+      },
+      "measured": {
+        "width": 336,
+        "height": 342
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "WM2Xz5qhDX623xiKU9v2R",
+      "type": "custom",
+      "position": {
+        "x": 163.44915409382622,
+        "y": -387.08370910323083
+      },
+      "data": {
+        "label": "Denoise",
+        "module": "mellon-modular-diffusers.custom",
+        "action": "Denoise",
+        "category": "Modular-Diffusers",
+        "params": {
+          "components": {
+            "label": "Components",
+            "display": "input",
+            "type": "diffusers_components"
+          },
+          "embeddings": {
+            "label": "Embeddings",
+            "display": "input",
+            "type": "prompt_embeddings"
+          },
+          "steps": {
+            "label": "Steps",
+            "type": "int",
+            "default": 25,
+            "min": 1,
+            "max": 1000,
+            "value": "8"
+          },
+          "cfg": {
+            "label": "Guidance",
+            "type": "float",
+            "display": "slider",
+            "default": 7,
+            "min": 0,
+            "max": 20,
+            "value": "2.0"
+          },
+          "seed": {
+            "label": "Seed",
+            "type": "int",
+            "default": 0,
+            "min": 0,
+            "display": "number",
+            "group": "random-seed",
+            "value": "5068175902523673",
+            "disabled": false
+          },
+          "width": {
+            "label": "Width",
+            "type": "int",
+            "display": "text",
+            "default": 1024,
+            "min": 8,
+            "max": 8192,
+            "step": 8,
+            "group": "dimensions",
+            "value": 1024
+          },
+          "height": {
+            "label": "Height",
+            "type": "int",
+            "display": "text",
+            "default": 1024,
+            "min": 8,
+            "max": 8192,
+            "step": 8,
+            "group": "dimensions",
+            "value": 1024
+          },
+          "scheduler": {
+            "label": "Scheduler",
+            "display": "select",
+            "type": [
+              "string",
+              "scheduler"
+            ],
+            "options": {
+              "DDIMScheduler": "DDIM",
+              "DDPMScheduler": "DDPM",
+              "DEISMultistepScheduler": "DEIS",
+              "DPMSolverSinglestepScheduler": "DPM++ 2S",
+              "DPMSolverMultistepScheduler": "DPM++ 2M",
+              "DPMSolverSDEScheduler": "DPM++ SDE",
+              "EDMDPMSolverMultistepScheduler": "DPM++ 2M EDM",
+              "EulerDiscreteScheduler": "Euler",
+              "EulerAncestralDiscreteScheduler": "Euler Ancestral",
+              "HeunDiscreteScheduler": "Heun",
+              "KDPM2DiscreteScheduler": "KDPM2",
+              "KDPM2AncestralDiscreteScheduler": "KDPM2 Ancestral",
+              "LCMScheduler": "LCM",
+              "LMSDiscreteScheduler": "LMS",
+              "PNDMScheduler": "PNDM",
+              "TCDScheduler": "TCD",
+              "UniPCMultistepScheduler": "UniPC"
+            },
+            "default": "EulerDiscreteScheduler",
+            "value": "DPMSolverMultistepScheduler"
+          },
+          "karras": {
+            "label": "Karras",
+            "type": "boolean",
+            "default": false,
+            "group": {
+              "key": "scheduler_options",
+              "label": "Scheduler Options",
+              "display": "collapse"
+            },
+            "value": false
+          },
+          "trailing": {
+            "label": "Trailing",
+            "type": "boolean",
+            "default": false,
+            "group": "scheduler_options",
+            "value": false
+          },
+          "v_prediction": {
+            "label": "V-Prediction",
+            "type": "boolean",
+            "default": false,
+            "group": "scheduler_options",
+            "value": false
+          },
+          "image": {
+            "label": "Image",
+            "type": "image",
+            "display": "input",
+            "group": {
+              "key": "image_to_image",
+              "label": "Image to Image / Inpainting",
+              "display": "collapse"
+            }
+          },
+          "strength": {
+            "label": "Strength",
+            "type": "float",
+            "display": "slider",
+            "default": 0.5,
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "group": "image_to_image",
+            "value": 0.5
+          },
+          "guider": {
+            "label": "Optional Guider",
+            "type": "guider",
+            "display": "input"
+          },
+          "lora": {
+            "label": "Lora",
+            "display": "input",
+            "type": "lora"
+          },
+          "controlnet": {
+            "label": "Controlnet",
+            "type": "controlnet",
+            "display": "input"
+          },
+          "ip_adapter": {
+            "label": "IP Adapter",
+            "type": "ip_adapter",
+            "display": "input"
+          },
+          "latents": {
+            "label": "Latents",
+            "type": "latents",
+            "display": "output"
+          },
+          "__random__seed": {
+            "label": "Enable Random Seed",
+            "type": "boolean",
+            "display": "iconToggle",
+            "default": false,
+            "group": "random-seed",
+            "icon": "random",
+            "onChange": {
+              "action": "disable",
+              "target": {
+                "true": [
+                  "seed"
+                ],
+                "false": []
+              }
+            },
+            "value": false
+          }
+        },
+        "groups": {
+          "image_to_image_group": {
+            "open": false
+          },
+          "scheduler_options_group": {
+            "open": true
+          }
+        },
+        "cache": true,
+        "time": "3.27",
+        "memory": 0
+      },
+      "measured": {
+        "width": 480,
+        "height": 799
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "Qj1qPlG7fNXmCXlRvd05f",
+      "type": "custom",
+      "position": {
+        "x": 712.7629835564652,
+        "y": -678.081003559969
+      },
+      "data": {
+        "label": "Decode Latents",
+        "module": "mellon-modular-diffusers.custom",
+        "action": "DecodeLatents",
+        "category": "Modular-Diffusers",
+        "params": {
+          "components": {
+            "label": "Components",
+            "display": "input",
+            "type": "diffusers_components"
+          },
+          "latents": {
+            "label": "Latents",
+            "type": "latents",
+            "display": "input"
+          },
+          "images": {
+            "label": "Images",
+            "type": "image",
+            "display": "output"
+          }
+        },
+        "groups": {},
+        "cache": true,
+        "time": "0.52",
+        "memory": 0
+      },
+      "measured": {
+        "width": 150,
+        "height": 206
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "xbg3febmejVy9F9-lbLUs",
+      "type": "custom",
+      "position": {
+        "x": 1013.5292558060414,
+        "y": -808.4881437532271
+      },
+      "data": {
+        "label": "Preview Image",
+        "module": "BasicImage",
+        "action": "Preview",
+        "category": "image",
+        "params": {
+          "vae": {
+            "label": "VAE | Pipeline",
+            "display": "input",
+            "type": [
+              "pipeline",
+              "vae"
+            ],
+            "description": "VAE to decode latents. Required only if input images are latents."
+          },
+          "images": {
+            "label": "Images | Latents",
+            "display": "input",
+            "type": [
+              "image",
+              "latent"
+            ]
+          },
+          "images_out": {
+            "label": "Images",
+            "display": "output",
+            "type": "image"
+          },
+          "width": {
+            "label": "Width",
+            "type": "int",
+            "display": "output"
+          },
+          "height": {
+            "label": "Height",
+            "type": "int",
+            "display": "output"
+          },
+          "preview": {
+            "label": "Preview",
+            "display": "ui",
+            "source": "images_out",
+            "type": "image"
+          },
+          "device": {
+            "label": "Device",
+            "type": "string",
+            "options": {
+              "cuda:0": {
+                "index": 0,
+                "device": "cuda:0",
+                "host": "",
+                "label": "cuda:0",
+                "total_memory": 25305481216
+              },
+              "cpu": {
+                "index": 0,
+                "device": "cpu",
+                "host": "",
+                "label": "cpu",
+                "total_memory": null
+              }
+            },
+            "default": "cuda:0",
+            "value": "cuda:0"
+          }
+        },
+        "groups": {},
+        "cache": true,
+        "time": "0.00",
+        "memory": 0
+      },
+      "measured": {
+        "width": 1040,
+        "height": 1373
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "6O5XUmQuLt79ZffMrwb2S",
+      "type": "custom",
+      "position": {
+        "x": -356.59195795898796,
+        "y": 323.0558060688205
+      },
+      "data": {
+        "label": "Perturbed Attention Guidance",
+        "module": "mellon-modular-diffusers.custom",
+        "action": "PAGOptionalGuider",
+        "category": "Modular-Diffusers",
+        "params": {
+          "pag_scale": {
+            "label": "Scale",
+            "type": "float",
+            "display": "slider",
+            "default": 3,
+            "min": 0,
+            "max": 5,
+            "value": "0.5"
+          },
+          "pag_layers": {
+            "label": "PAG Layers",
+            "type": "string",
+            "default": "mid",
+            "value": "down.blocks.2.attentions.1"
+          },
+          "guider": {
+            "label": "Guider",
+            "display": "output",
+            "type": "guider"
+          }
+        },
+        "groups": {},
+        "cache": true,
+        "time": "0.00",
+        "memory": 0
+      },
+      "measured": {
+        "width": 333,
+        "height": 236
+      },
+      "selected": true,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "EFX7JW3lx-9tlMqMTiGyg",
+      "sourceHandle": "components",
+      "target": "WM2Xz5qhDX623xiKU9v2R",
+      "targetHandle": "components",
+      "id": "sEow5K468A_t5WVh_Ic8C",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    },
+    {
+      "source": "N1B_E6wMuwO5QTQAGzZ-L",
+      "sourceHandle": "embeddings",
+      "target": "WM2Xz5qhDX623xiKU9v2R",
+      "targetHandle": "embeddings",
+      "id": "fF3MUGqYMW6Xf7mJ_QKfm",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    },
+    {
+      "source": "WM2Xz5qhDX623xiKU9v2R",
+      "sourceHandle": "latents",
+      "target": "Qj1qPlG7fNXmCXlRvd05f",
+      "targetHandle": "latents",
+      "id": "j5YfFXz5tiTTX3hKcwDWg",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    },
+    {
+      "source": "EFX7JW3lx-9tlMqMTiGyg",
+      "sourceHandle": "components",
+      "target": "Qj1qPlG7fNXmCXlRvd05f",
+      "targetHandle": "components",
+      "id": "DdgnR6nIIT-TngwMzlMGM",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    },
+    {
+      "source": "Qj1qPlG7fNXmCXlRvd05f",
+      "sourceHandle": "images",
+      "target": "xbg3febmejVy9F9-lbLUs",
+      "targetHandle": "images",
+      "id": "gjXF-RH6Hb3vxHevZyGbE",
+      "style": {
+        "stroke": "rgb(21, 95, 160)"
+      }
+    },
+    {
+      "source": "EFX7JW3lx-9tlMqMTiGyg",
+      "sourceHandle": "components",
+      "target": "N1B_E6wMuwO5QTQAGzZ-L",
+      "targetHandle": "components",
+      "id": "iaoqNMVqtGjXuGb-xKAWm",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    },
+    {
+      "source": "6O5XUmQuLt79ZffMrwb2S",
+      "sourceHandle": "guider",
+      "target": "WM2Xz5qhDX623xiKU9v2R",
+      "targetHandle": "guider",
+      "id": "vE7apC3GPRSCoKpJKvalq",
+      "style": {
+        "stroke": "rgb(100, 100, 100)"
+      }
+    }
+  ],
+  "viewport": {
+    "x": 328.8393732777686,
+    "y": 495.98329773550665,
+    "zoom": 0.5775428922767926
+  }
+}
