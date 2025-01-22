@@ -4,11 +4,16 @@
 
 ### SIMPLE
 
-|[Code](https://github.com/asomoza/diffusers_melon_equivalents/blob/main/code/t2i_simple.py)|
-[Workflow](https://github.com/asomoza/diffusers_melon_equivalents/blob/main/workflows/t2i_simple_workflow.json)|
-
 <p align="center">
-<img src="https://raw.githubusercontent.com/asomoza/diffusers_melon_equivalents/main/outputs/t2i_basic.png" width="350" alt=""/>
+    <table style="border: 1px solid #aaaaaa; >
+    <tr>
+        <td align="center"><a href="https://github.com/asomoza/diffusers_melon_equivalents/blob/main/code/t2i_simple.py">Code</a></td>
+        <td align="center"><a href="https://github.com/asomoza/diffusers_melon_equivalents/blob/main/workflows/t2i_simple_workflow.json">Workflow</a></td>
+        <td align="center">
+        <img src="https://raw.githubusercontent.com/asomoza/diffusers_melon_equivalents/main/outputs/t2i_basic.png" width="200" alt=""/>
+        </td>
+    </tr>
+    </table>
 <p>
 
 ### PAG
