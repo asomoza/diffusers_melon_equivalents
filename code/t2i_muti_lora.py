@@ -1,9 +1,10 @@
 import torch
-from diffusers import DPMSolverMultistepScheduler, ModularPipeline
+from diffusers import EulerAncestralDiscreteScheduler, ModularPipeline
 from diffusers.pipelines.components_manager import ComponentsManager
 from diffusers.pipelines.modular_pipeline import SequentialPipelineBlocks
 from diffusers.pipelines.stable_diffusion_xl.pipeline_stable_diffusion_xl_modular import (
     AUTO_BLOCKS,
+    StableDiffusionXLLoraStep,
 )
 
 device = "cuda:0"
@@ -11,8 +12,10 @@ dtype = torch.float16
 repo = "Lykon/dreamshaper-xl-v2-turbo"
 guidance_scale = 2.0
 num_inference_steps = 8
-seed = 5068175902523673
-prompt = "cinematic film still, of an anthropomorphic capybara leisurely sipping a cup of herbal tea, donned in a cozy robe and fuzzy slippers while lounging on a lily pad in the middle of a serene pond, cinematic, film grain, 35mm, high budget, cinemascope, epic"
+seed = 851573115810490
+prompt = (
+    "cinematic film still of an anthropomorphic capybara, ral-dissolve, pixar style"
+)
 height = 1024
 width = 1024
 
@@ -33,6 +36,22 @@ class SDXLAutoBlocks(SequentialPipelineBlocks):
 
 sdxl_auto_blocks = SDXLAutoBlocks()
 
+### LORA NODE
+lora_step = StableDiffusionXLLoraStep()
+lora_node = ModularPipeline.from_block(lora_step)
+lora_node.update_states(**components.get(["text_encoder", "text_encoder_2", "unet"]))
+lora_node.load_lora_weights(
+    "rajkumaralma/dissolve_dust_style",
+    weight_name="ral-dissolve-sdxl.safetensors",
+    adapter_name="ral-dissolve",
+)
+lora_node.load_lora_weights(
+    "rajkumaralma/pixar_style",
+    weight_name="PixarXL.safetensors",
+    adapter_name="pixar_style",
+)
+lora_node.set_adapters(["ral-dissolve", "pixar_style"], [1.2, 1.0])
+
 ### TEXT ENCODER NODE
 text_node = ModularPipeline.from_block(text_block)
 text_node.update_states(
@@ -45,7 +64,7 @@ text_state = text_node(prompt=prompt)
 sdxl_node = ModularPipeline.from_block(sdxl_auto_blocks)
 sdxl_node.update_states(**components.get(["unet", "scheduler", "vae"]))
 
-sdxl_node.scheduler = DPMSolverMultistepScheduler.from_config(
+sdxl_node.scheduler = EulerAncestralDiscreteScheduler.from_config(
     sdxl_node.scheduler.config
 )
 
@@ -66,4 +85,4 @@ decoder_node.update_states(vae=components.get("vae"))
 images_output = decoder_node(latents=latents, output="images")
 
 ### SAVE IMAGE
-images_output.images[0].save("outputs/t2i_simple.png")
+images_output.images[0].save("outputs/t2i_multi_lora.png")

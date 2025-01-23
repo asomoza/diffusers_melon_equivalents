@@ -1,6 +1,6 @@
 import torch
-from diffusers import EulerAncestralDiscreteScheduler, ModularPipeline
-from diffusers.guider import APGGuider
+from diffusers import DPMSolverMultistepScheduler, ModularPipeline
+from diffusers.guider import PAGGuider
 from diffusers.pipelines.components_manager import ComponentsManager
 from diffusers.pipelines.modular_pipeline import SequentialPipelineBlocks
 from diffusers.pipelines.stable_diffusion_xl.pipeline_stable_diffusion_xl_modular import (
@@ -10,9 +10,14 @@ from diffusers.pipelines.stable_diffusion_xl.pipeline_stable_diffusion_xl_modula
 device = "cuda:0"
 dtype = torch.float16
 repo = "Lykon/dreamshaper-xl-v2-turbo"
-
-
+guidance_scale = 2.0
+num_inference_steps = 8
+seed = 5068175902523673
 prompt = "cinematic film still, of an anthropomorphic capybara leisurely sipping a cup of herbal tea, donned in a cozy robe and fuzzy slippers while lounging on a lily pad in the middle of a serene pond, cinematic, film grain, 35mm, high budget, cinemascope, epic"
+height = 1024
+width = 1024
+pag_scale = 0.5
+pag_applied_layers = ["down.blocks.2.attentions.1"]
 
 ## COMPONENTS LOADER NODE
 components = ComponentsManager()
@@ -39,27 +44,27 @@ text_node.update_states(
 text_state = text_node(prompt=prompt)
 
 ### PAG NODE
-apg_guider = APGGuider()
+pag_guider = PAGGuider(pag_applied_layers=pag_applied_layers)
 
 ### SDXL NODE
 sdxl_node = ModularPipeline.from_block(sdxl_auto_blocks)
 sdxl_node.update_states(
-    **components.get(["unet", "scheduler", "vae"]), guider=apg_guider
+    **components.get(["unet", "scheduler", "vae"]), guider=pag_guider
 )
 
-sdxl_node.scheduler = EulerAncestralDiscreteScheduler.from_config(
+sdxl_node.scheduler = DPMSolverMultistepScheduler.from_config(
     sdxl_node.scheduler.config
 )
 
-generator = torch.Generator(device="cuda").manual_seed(5068175902523673)
+generator = torch.Generator(device="cuda").manual_seed(seed)
 latents = sdxl_node(
     **text_state.intermediates,
     generator=generator,
-    guidance_scale=2.0,
-    num_inference_steps=8,
-    height=1024,
-    width=1024,
-    guider_kwargs={"momentum": -0.5, "rescale_factor": 15},
+    guidance_scale=guidance_scale,
+    num_inference_steps=num_inference_steps,
+    height=height,
+    width=width,
+    guider_kwargs={"pag_scale": pag_scale},
     output="latents",
 )
 
@@ -69,4 +74,4 @@ decoder_node.update_states(vae=components.get("vae"))
 images_output = decoder_node(latents=latents, output="images")
 
 ### SAVE IMAGE
-images_output.images[0].save("outputs/t2i_apg.png")
+images_output.images[0].save("outputs/t2i_pag.png")
